@@ -16,15 +16,19 @@
 
 <style>
 .leftmenu {
+
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
+  width: 150px;
 }
 
 .rightmenu {
 
 display: flex;
 flex-direction: row;
+justify-content: space-between;
+width: 150px;
 }
 
 .navbar {

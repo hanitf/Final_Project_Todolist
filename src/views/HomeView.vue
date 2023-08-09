@@ -1,10 +1,8 @@
 <script setup>
-import { useUserStore } from "@/stores/user";
 import { useTaskStore } from "@/stores/task";
 import { loginUserStore } from "../stores/user";
 import { ref } from 'vue';
 
-const userStore = useUserStore();
 const taskStore = useTaskStore();
 const loginStore = loginUserStore();
 
@@ -15,7 +13,7 @@ const password = ref("");
 <template>
   <h1>Todo List</h1>
 
-  <h2 v-if="loginStore.user">Current User: {{ loginStore.user.user.email }}</h2>
+  <h2 v-if="loginStore">Current User: {{ loginStore.login.user.email }}</h2>
 
   <input placeholder="Write your email" v-model="email">
   <input placeholder="Write your password" v-model="password" type="password">
