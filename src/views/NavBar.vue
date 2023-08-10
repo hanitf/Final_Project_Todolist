@@ -9,7 +9,7 @@ const loginStore = loginUserStore();
 <template>
   <div class="navbar">
     <div class="leftmenu">
-      <div><img src="src\logo\logo.png" alt="Logo" class="logo"></div>
+      <div><img src="@/logo/logo.png" alt="Logo" class="logo"></div>
     </div>
     <div class="rightmenu">
       <div class="dropdown">
