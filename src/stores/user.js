@@ -27,7 +27,7 @@ export const loginUserStore = defineStore("loginStore", () => {
   const login = ref();
 
   const loginUser = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     })

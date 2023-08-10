@@ -4,20 +4,16 @@ import { loginUserStore } from "../stores/user";
 import { ref } from 'vue';
 
 const taskStore = useTaskStore();
-const loginStore = loginUserStore();
 
-const email = ref("");
-const password = ref("");
+
+
 </script>
 
 <template>
-  <h1>Todo List</h1>
+  <h1 class="maintext">Dashboard</h1>
 
-  <h2 v-if="loginStore">Current User: {{ loginStore.login.user.email }}</h2>
 
-  <input placeholder="Write your email" v-model="email">
-  <input placeholder="Write your password" v-model="password" type="password">
-  <button @click="loginStore.loginUser(email, password)">Login</button>
+
 
   <br><br>
   <button @click="taskStore.fetchTasks()">Fetch Tasks</button>
@@ -27,3 +23,10 @@ const password = ref("");
     </li>
   </ul>
 </template>
+
+<style>
+.maintext {
+  text-align: center;
+
+}
+</style>
