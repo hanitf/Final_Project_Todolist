@@ -1,32 +1,7 @@
 <script setup>
-import { useTaskStore } from "@/stores/task";
-import { loginUserStore } from "../stores/user";
-import { ref } from 'vue';
-
-const taskStore = useTaskStore();
-
-
-
 </script>
 
 <template>
-  <h1 class="maintext">Dashboard</h1>
-
-
-
-
-  <br><br>
-  <button @click="taskStore.fetchTasks()">Fetch Tasks</button>
-  <ul>
-    <li v-for="task in taskStore.tasks">
-      {{ task.title }} - {{ task.is_complete }}
-    </li>
-  </ul>
+  <h1>Welcome to iTodo list</h1>
+  <p>This is a project made by Felipe Hanitzsch along the Ironhack Bootcamp as Web Developer (Fullstack Front-End)</p>
 </template>
-
-<style>
-.maintext {
-  text-align: center;
-
-}
-</style>
