@@ -25,4 +25,8 @@ const password = ref("");
   </div>
 </template>
 
-<style></style>
+<style>
+template {
+  font-family: monospace;
+}
+</style>

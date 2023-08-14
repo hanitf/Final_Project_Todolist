@@ -27,4 +27,8 @@ const taskStore = useTaskStore();
   text-align: center;
 
 }
+
+template {
+  font-family: monospace;
+}
 </style>

@@ -1,30 +1,30 @@
 <script setup>
-import { loginUserStore } from '../stores/user';
+import { useUserStore } from '../stores/user';
 import { ref } from 'vue';
+
+
 const email = ref("");
 const password = ref("");
-const loginStore = loginUserStore();
+const userStore = useUserStore();
+
 </script>
 
 <template>
   <div class="navbar">
     <div class="leftmenu">
-      <router-link to="/">Home</router-link>
-      </div>
+      <router-link to="/"><p class="homelink">Home</p></router-link>
+    </div>
     <div class="rightmenu">
       <div class="dropdown">
         <button class="dropbtn">Sign in</button>
         <div class="dropdown-content">
-          <a href="#"><input placeholder="Write your email" v-model="email">
-            <input placeholder="Write your password" v-model="password" type="password">
-            <button @click="loginStore.loginUser(email, password)">Login</button></a>
-          <div>
-            <router-link to="/account"><p v-if="loginStore.login">Current User: {{ loginStore.login.user.email }}</p></router-link>
-          </div>
-          <router-link to="/dashboard" v-if="loginStore.login">Dashboard</router-link>
-          <a href="#"><button class="logoutbutton" v-if="loginStore.login">Logout</button></a>
-          <router-link to="/newuser">Signup</router-link>
-
+          <input placeholder="Write your email" v-model="email" v-if="!userStore.user">
+            <input placeholder="Write your password" v-model="password" type="password" v-if="!userStore.user">
+            <button @click="userStore.loginUser(email, password)" v-if="!userStore.user">Login</button>
+          <router-link to="/account" v-if="userStore.user">Current User: {{ userStore.user.user.email }}</router-link>
+          <router-link to="/dashboard" v-if="userStore.user">Dashboard</router-link>
+          <button class="logoutbutton" v-if="userStore.user" @click="userStore.logoutUser">Logout</button>
+          <router-link to="/newuser" v-if="!userStore.user">Signup</router-link>
         </div>
       </div>
     </div>
@@ -55,20 +55,21 @@ const loginStore = loginUserStore();
   justify-content: space-between;
   padding-left: 150px;
   padding-right: 80px;
-  padding-top: 20px;
   background-color: #a2a5ad;
-  height: 60px;
+  height: 50px;
+  align-items: center;
+  font-family: monospace;
 }
 
 
 .dropbtn {
   background-color: #4c6baf;
   color: white;
-  padding: 16px;
+  padding: 10px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 
@@ -110,8 +111,7 @@ const loginStore = loginUserStore();
   background-color: #3e8e41;
 }
 
-.logo {
-  width: 50px;
+.homelink {
+font-size: 20px;
 }
-
 </style>

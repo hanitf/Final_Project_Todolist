@@ -6,3 +6,9 @@
   <p>Change Password</p>
   <p>Change Informations</p>
 </template>
+
+<style>
+template {
+  font-family: monospace;
+}
+</style>

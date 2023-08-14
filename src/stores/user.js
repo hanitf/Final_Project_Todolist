@@ -1,10 +1,11 @@
 import { defineStore } from "pinia";
 import supabase from "../lib/supabase";
 import { ref } from "vue";
+import { useRouter} from "vue-router";
 
 export const useUserStore = defineStore("userStore", () => {
   const user = ref();
-  
+  const router = useRouter();
 
   const createNewUser = async (email, password) => {
     const { data, error } = await supabase.auth.signUp({
@@ -19,15 +20,8 @@ export const useUserStore = defineStore("userStore", () => {
     }
   };
 
-  return {user, createNewUser}
-  
-})
-
-export const loginUserStore = defineStore("loginStore", () => {
-  const login = ref();
-
   const loginUser = async (email, password) => {
-     const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     })
@@ -35,10 +29,31 @@ export const loginUserStore = defineStore("loginStore", () => {
     if (error) console.log("Error: ", error);
     else {
       ("Data: ", console.log(data))
-      login.value = data;
+      user.value = data;
     }
   };
 
-  return {login, loginUser}
+  const logoutUser = async () => {
+
+    const { error } = await supabase.auth.signOut({
+    })
+      if (error) console.log("Error: ", error);
+    else  
+        router.push({ path: '/'})
+      
+
+    } 
+  
+
+ 
+
+  return { user, logoutUser, loginUser, createNewUser }
 
 })
+
+
+
+
+
+
+
