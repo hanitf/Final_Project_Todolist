@@ -15,9 +15,12 @@ const taskStore = useTaskStore();
 
   <br><br>
   <button @click="taskStore.fetchTasks()">Fetch Tasks</button>
+  <button @click="taskStore.createTasks()">Create Tasks</button>
+  <button @click="taskStore.deleteTasks()">Delete Tasks</button>
+  <button @click="taskStore.modifyTasks()">Modiy Tasks</button>
   <ul>
     <li v-for="task in taskStore.tasks">
-      {{ task.title }} - {{ task.is_complete }}
+      {{ task.title }}
     </li>
   </ul>
 </template>
