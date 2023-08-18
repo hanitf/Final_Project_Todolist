@@ -16,7 +16,7 @@ export const useUserStore = defineStore("userStore", () => {
     if (error) console.log("Error: ", error);
     else {
       ("Data: ", console.log(data))
-      user.value = data;
+      router.push({ path: '/createok' })
     }
   };
 
@@ -26,9 +26,10 @@ export const useUserStore = defineStore("userStore", () => {
       password: password,
     })
 
-    if (error) console.log("Error: ", error);
+    if (error) alert("Incorrect Credencials");
     else {
       ("Data: ", console.log(data))
+      router.push({ path: '/dashboard' })
       user.value = data;
     }
   };
@@ -44,9 +45,9 @@ export const useUserStore = defineStore("userStore", () => {
 
   }
 
-    return { user, logoutUser, loginUser, createNewUser }
+  return { user, logoutUser, loginUser, createNewUser }
 
-  })
+})
 
 
 

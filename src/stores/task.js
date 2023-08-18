@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import supabase from "../lib/supabase"
 import { ref } from "vue"
-import { useUserStore } from "./user"
+
 
 export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([]);
@@ -16,10 +16,10 @@ export const useTaskStore = defineStore("taskStore", () => {
     console.log("tasks: ", tasks);
   };
 
-  const createTasks = async () => {
+  const createTasks = async (creatEdit) => {
     const { error } = await supabase
-  .from('tasks')
-  .insert({ id: 1, title: 'Test2'})
+      .from('tasks')
+      .insert({ id: 1, title: creatEdit })
 
     if (error) console.log("Error: ", error);
     else console.log("tasks complete: ", tasks.value);
@@ -27,19 +27,19 @@ export const useTaskStore = defineStore("taskStore", () => {
 
   const deleteTasks = async () => {
     const { error } = await supabase
-  .from('tasks')
-  .delete()
-  .eq('id', 1)
+      .from('tasks')
+      .delete()
+      .eq('id', 1)
 
     if (error) console.log("Error: ", error);
     else console.log("tasks delete: ");
   };
 
-  const modifyTasks = async () => {
+  const modifyTasks = async (modifyEdit) => {
     const { error } = await supabase
-    .from('tasks')
-    .update({ title: 'deu certo' })
-    .eq('id', 1)
+      .from('tasks')
+      .update({ title: modifyEdit })
+      .eq('id', 1)
 
     if (error) console.log("Error: ", error);
     else console.log("tasks modified: ");

@@ -12,15 +12,19 @@ const userStore = useUserStore();
 <template>
   <div class="navbar">
     <div class="leftmenu">
-      <router-link to="/"><p class="homelink">Home</p></router-link>
+      <router-link to="/">
+        <p class="homelink">Home</p>
+      </router-link>
     </div>
     <div class="rightmenu">
       <div class="dropdown">
         <button class="dropbtn">Sign in</button>
         <div class="dropdown-content">
-          <input placeholder="Write your email" v-model="email" v-if="!userStore.user">
-            <input placeholder="Write your password" v-model="password" type="password" v-if="!userStore.user">
-            <button @click="userStore.loginUser(email, password)" v-if="!userStore.user">Login</button>
+          <input placeholder="Write your email" v-model="email" v-if="!userStore.user"
+            @keyup.enter="userStore.loginUser(email, password)">
+          <input placeholder="Write your password" v-model="password" type="password" v-if="!userStore.user"
+            @keyup.enter="userStore.loginUser(email, password)">
+          <button @click="userStore.loginUser(email, password)" v-if="!userStore.user">Login</button>
           <router-link to="/account" v-if="userStore.user">Current User: {{ userStore.user.user.email }}</router-link>
           <router-link to="/dashboard" v-if="userStore.user">Dashboard</router-link>
           <button class="logoutbutton" v-if="userStore.user" @click="userStore.logoutUser">Logout</button>
@@ -112,6 +116,6 @@ const userStore = useUserStore();
 }
 
 .homelink {
-font-size: 20px;
+  font-size: 20px;
 }
 </style>
