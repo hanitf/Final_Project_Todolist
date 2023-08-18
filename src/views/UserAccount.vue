@@ -8,7 +8,7 @@ const userStore = useUserStore();
 
 <template>
   <h1>Account settings</h1>
-  <button>Change Password</button>
+  <router-link to="/updatepassword">Change Password</router-link>
   <button>Change Information</button>
 </template>
 

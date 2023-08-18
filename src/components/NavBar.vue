@@ -25,6 +25,7 @@ const userStore = useUserStore();
           <input placeholder="Write your password" v-model="password" type="password" v-if="!userStore.user"
             @keyup.enter="userStore.loginUser(email, password)">
           <button @click="userStore.loginUser(email, password)" v-if="!userStore.user">Login</button>
+          <router-link to="/resetpassword" v-if="!userStore.user">Forgot your password?</router-link>
           <router-link to="/account" v-if="userStore.user">Current User: {{ userStore.user.user.email }}</router-link>
           <router-link to="/dashboard" v-if="userStore.user">Dashboard</router-link>
           <button class="logoutbutton" v-if="userStore.user" @click="userStore.logoutUser">Logout</button>

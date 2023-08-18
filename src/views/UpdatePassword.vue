@@ -2,7 +2,7 @@
 import { useUserStore } from '../stores/user';
 import { ref } from 'vue';
 
-const email = ref("");
+const password = ref("");
 const userStore = useUserStore();
 
 </script>
@@ -10,13 +10,13 @@ const userStore = useUserStore();
 
 <template>
   <div>
-    <h1>Reset Password</h1>
+    <h1>Update Password</h1>
 
     <div>
-      <input placeholder="Write your email" v-model="email">
+      <input placeholder="Write your new password" v-model="password">
     </div>
     <div>
-      <button @click="userStore.passwordReset(email)">Reset Password</button>
+      <button @click="userStore.passwordUpdate(password)">Reset Password</button>
     </div>
   </div>
 </template>

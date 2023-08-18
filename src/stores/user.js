@@ -43,9 +43,30 @@ export const useUserStore = defineStore("userStore", () => {
       router.push({ path: '/' })
     user.value = null
 
-  }
+  };
 
-  return { user, logoutUser, loginUser, createNewUser }
+  const passwordReset = async (email) => {
+
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    })
+    if (error) console.log("Error: ", error);
+    else
+      router.push({ path: '/emailsent' })
+
+  };
+  
+  const passwordUpdate = async (password) => {
+
+    const { data, error } = await supabase.auth.updateUser({
+      password: password
+    })
+    if (error) console.log("Error: ", error);
+    else
+      router.push({ path: '/dashboard' })
+
+  };
+
+  return { user, passwordReset, logoutUser, loginUser, createNewUser, passwordUpdate }
 
 })
 

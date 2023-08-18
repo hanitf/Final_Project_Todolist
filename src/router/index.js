@@ -4,7 +4,9 @@ import NewUser from '../views/NewUser.vue'
 import DashBoard from '../views/DashBoard.vue'
 import UserAccount from '../views/UserAccount.vue'
 import CreateOk from '../views/CreateOk.vue'
-
+import ResetPassword from '../views/ResetPassword.vue'
+import EmailSent from '../views/EmailSent.vue'
+import UpdatePassword from '../views/UpdatePassword.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -32,6 +34,21 @@ const router = createRouter({
       path: '/createok',
       name: 'createok',
       component: CreateOk
+    },
+    {
+      path: '/resetpassword',
+      name: 'resetpassword',
+      component: ResetPassword
+    },
+    {
+      path: '/emailsent',
+      name: 'emailsent',
+      component: EmailSent
+    },
+    {
+      path: '/updatepassword',
+      name: 'updatepassword',
+      component: UpdatePassword
     }
   ]
 })
