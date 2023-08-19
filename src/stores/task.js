@@ -24,6 +24,7 @@ export const useTaskStore = defineStore("taskStore", () => {
       .insert({ id: tasks.id, title: creatEdit })
     if (error) console.log("Error: ", error);
     else console.log("tasks complete: ", tasks.id);
+    await fetchTasks()
   };
 
   const deleteTasks = async (task) => {
@@ -34,6 +35,7 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) console.log("Error: ", error);
     else console.log("tasks delete: ");
+    await fetchTasks()
   };
 
   const modifyTasks = async (modifyEdit, task) => {
@@ -44,6 +46,7 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) console.log("Error: ", error);
     else console.log("tasks modified: ");
+    await fetchTasks()
   }
 
   return { tasks, modifyTasks, deleteTasks, createTasks, fetchTasks }

@@ -13,7 +13,7 @@ const userStore = useUserStore();
     <h1>Update Password</h1>
 
     <div>
-      <input placeholder="Write your new password" v-model="password">
+      <input placeholder="Write your new password" v-model="password" type="password">
     </div>
     <div>
       <button @click="userStore.passwordUpdate(password)">Reset Password</button>
