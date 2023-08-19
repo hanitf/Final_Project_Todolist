@@ -16,30 +16,31 @@ export const useTaskStore = defineStore("taskStore", () => {
     console.log("tasks: ", tasks);
   };
 
+
+
   const createTasks = async (creatEdit) => {
     const { error } = await supabase
       .from('tasks')
-      .insert({ id: 1, title: creatEdit })
-
+      .insert({ id: tasks.id, title: creatEdit })
     if (error) console.log("Error: ", error);
-    else console.log("tasks complete: ", tasks.value);
+    else console.log("tasks complete: ", tasks.id);
   };
 
-  const deleteTasks = async () => {
+  const deleteTasks = async (task) => {
     const { error } = await supabase
       .from('tasks')
       .delete()
-      .eq('id', 1)
+      .eq('id', task)
 
     if (error) console.log("Error: ", error);
     else console.log("tasks delete: ");
   };
 
-  const modifyTasks = async (modifyEdit) => {
+  const modifyTasks = async (modifyEdit, task) => {
     const { error } = await supabase
       .from('tasks')
       .update({ title: modifyEdit })
-      .eq('id', 1)
+      .eq('id', task)
 
     if (error) console.log("Error: ", error);
     else console.log("tasks modified: ");

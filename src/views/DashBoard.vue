@@ -5,7 +5,6 @@ import { ref } from "vue";
 const taskStore = useTaskStore();
 const creatEdit = ref("");
 const modifyEdit = ref("");
-const removeSelect = ref("");
 
 </script>
 
@@ -19,15 +18,15 @@ const removeSelect = ref("");
     <button @click="taskStore.createTasks(creatEdit)">Create Tasks</button>
   </div>
   <div>
-    <button @click="taskStore.deleteTasks()">Delete Tasks</button>
-  </div>
-  <div>
     <input v-model="modifyEdit">
-    <button @click="taskStore.modifyTasks(modifyEdit)">Modify Tasks</button>
+    
   </div>
   <ul>
     <li v-for="task in taskStore.tasks">
-      <input type="checkbox" v-model="removeSelect"> {{ task.title }}
+      <button @click="taskStore.deleteTasks(task.id)">Delete Tasks</button>
+      <button @click="taskStore.modifyTasks(modifyEdit, task.id)">Modify Tasks</button>
+      {{ task.id }}
+      {{ task.title }}
     </li>
   </ul>
 </template>
