@@ -18,15 +18,15 @@ const modifyEdit = ref("");
     <button @click="taskStore.createTasks(creatEdit)">Create Tasks</button>
   </div>
   <div>
-    <input v-model="modifyEdit">
+    
     
   </div>
   <ul>
     <li v-for="task in taskStore.tasks">
       <button @click="taskStore.deleteTasks(task.id)">Delete Tasks</button>
-      <button @click="taskStore.modifyTasks(modifyEdit, task.id)">Modify Tasks</button>
-      {{ task.id }}
       {{ task.title }}
+      <button @click="taskStore.modifyTasks(modifyEdit, task.id)">Modify Tasks</button>
+        <input v-model="modifyEdit">
     </li>
   </ul>
 </template>

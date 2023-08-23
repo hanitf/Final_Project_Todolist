@@ -5,6 +5,7 @@ import { ref } from "vue"
 
 export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([]);
+  const task = ref("");
 
   const fetchTasks = async () => {
     const { data, error } = await supabase
@@ -21,10 +22,12 @@ export const useTaskStore = defineStore("taskStore", () => {
   const createTasks = async (creatEdit) => {
     const { error } = await supabase
       .from('tasks')
-      .insert({ id: tasks.id, title: creatEdit })
+      .insert({ id: task.id, title: creatEdit })
     if (error) console.log("Error: ", error);
     else console.log("tasks complete: ", tasks.id);
-    await fetchTasks()
+    tasks.value.push({
+      title: creatEdit,
+    })
   };
 
   const deleteTasks = async (task) => {
@@ -35,7 +38,9 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) console.log("Error: ", error);
     else console.log("tasks delete: ");
-    await fetchTasks()
+    tasks.value.splice({
+      id: task.id,
+    })
   };
 
   const modifyTasks = async (modifyEdit, task) => {
@@ -46,8 +51,10 @@ export const useTaskStore = defineStore("taskStore", () => {
 
     if (error) console.log("Error: ", error);
     else console.log("tasks modified: ");
-    await fetchTasks()
-  }
+    task.value.push({
+      title: modifyEdit,
+    })
+  };
 
-  return { tasks, modifyTasks, deleteTasks, createTasks, fetchTasks }
+  return { tasks, task, modifyTasks, deleteTasks, createTasks, fetchTasks }
 })
