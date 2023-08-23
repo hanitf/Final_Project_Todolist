@@ -24,7 +24,7 @@ export const useTaskStore = defineStore("taskStore", () => {
       .from('tasks')
       .insert({ id: task.id, title: creatEdit })
     if (error) console.log("Error: ", error);
-    else console.log("tasks complete: ", tasks.id);
+    else console.log("tasks complete: ", tasks.title);
     tasks.value.push({
       title: creatEdit,
     })
@@ -47,11 +47,11 @@ export const useTaskStore = defineStore("taskStore", () => {
     const { error } = await supabase
       .from('tasks')
       .update({ title: modifyEdit })
-      .eq('id', task)
+      .eq('id', task.id)
 
     if (error) console.log("Error: ", error);
-    else console.log("tasks modified: ");
-    task.value.push({
+    else console.log("tasks modified: ", task.title);
+    tasks.value.fill({
       title: modifyEdit,
     })
   };
