@@ -13,12 +13,12 @@ const userStore = useUserStore();
   <div class="navbar">
     <div class="leftmenu">
       <router-link to="/">
-        <p class="homelink"><img src="src\logo\logo.png" alt="Menu" class="homeicon"></p>
+        <p class="homelink"><img src="@\src\logo\logo.png" alt="Menu" class="homeicon"></p>
       </router-link>
     </div>
     <div class="rightmenu">
       <div class="dropdown">
-        <button class="dropbtn"><img src="src\logo\menu.png" alt="Menu" class="menuicon"></button>
+        <button class="dropbtn"><img src="@\src\logo\menu.png" alt="Menu" class="menuicon"></button>
         <div class="dropdown-content">
           <input placeholder="Write your email" v-model="email" v-if="!userStore.user"
             @keyup.enter="userStore.loginUser(email, password)">
