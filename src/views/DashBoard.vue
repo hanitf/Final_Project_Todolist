@@ -1,21 +1,28 @@
 <script setup>
 import { useTaskStore } from "@/stores/task";
 import { ref } from "vue";
+import { useUserStore } from '../stores/user';
 
 const taskStore = useTaskStore();
 const creatEdit = ref("");
 const modifyEdit = ref("");
+const userStore = useUserStore();
+
+async function renderDelete(tasksID) {
+  await taskStore.deleteTasks(tasksID)
+  await taskStore.fetchTasks()
+  
+}
+
+
 
 </script>
 
-<template>
+<template class="templatedash">
   <h1 class="maintext">Dashboard</h1>
   <div>
-    <button @click="taskStore.fetchTasks()">Fetch Tasks</button>
-  </div>
-  <div>
-    <input v-model="creatEdit">
-    <button @click="taskStore.createTasks(creatEdit)">Create Tasks</button>
+    <input v-model="creatEdit" @keydown.enter="taskStore.createTasks(creatEdit, userStore.user.user.email, userStore.user.user.id)">
+    <button @click="taskStore.createTasks(creatEdit, userStore.user.user.email, userStore.user.user.id)">Create Tasks</button>
   </div>
   <div>
     
@@ -23,10 +30,11 @@ const modifyEdit = ref("");
   </div>
   <ul>
     <li v-for="task in taskStore.tasks">
-      <button @click="taskStore.deleteTasks(task.id)">Delete Tasks</button>
-      {{ task.title }}
+      
+      <p v-if="task">{{ task.title }}</p>
       <input v-model="modifyEdit">
-      <button @click="taskStore.modifyTasks(modifyEdit, task)">Modify Tasks</button>
+      <button @click="renderDelete(task.id)">Delete Tasks</button>
+      <button @click="taskStore.modifyTasks(modifyEdit, task.id)">Modify Tasks</button>
         
     </li>
   </ul>
@@ -40,5 +48,9 @@ const modifyEdit = ref("");
 
 template {
   font-family: monospace;
+}
+
+.templatedash{
+  background-color: aqua;
 }
 </style>

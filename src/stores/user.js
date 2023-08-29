@@ -2,10 +2,18 @@ import { defineStore } from "pinia";
 import supabase from "../lib/supabase";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useTaskStore } from "@/stores/task";
 
 export const useUserStore = defineStore("userStore", () => {
   const user = ref();
   const router = useRouter();
+  const taskStore = useTaskStore();
+
+  
+  const getSession = async () => {
+    const { data, error } = await supabase.auth.getSession()
+    console.log(data);
+  }
 
   const createNewUser = async (email, password) => {
     const { data, error } = await supabase.auth.signUp({
@@ -25,12 +33,13 @@ export const useUserStore = defineStore("userStore", () => {
       email: email,
       password: password,
     })
-
+    
     if (error) alert("Incorrect Credencials");
     else {
       ("Data: ", console.log(data))
       router.push({ path: '/dashboard' })
-      user.value = data;
+      await taskStore.fetchTasks()
+      user.value = data
     }
   };
 
@@ -66,7 +75,7 @@ export const useUserStore = defineStore("userStore", () => {
 
   };
 
-  return { user, passwordReset, logoutUser, loginUser, createNewUser, passwordUpdate }
+  return { user, getSession, passwordReset, logoutUser, loginUser, createNewUser, passwordUpdate }
 
 })
 

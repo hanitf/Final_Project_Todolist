@@ -8,8 +8,9 @@ const userStore = useUserStore();
 
 <template>
   <h1>Account settings</h1>
+  {{ userStore.user.user.email }} <br>
   <router-link to="/updatepassword">Change Password</router-link>
-  <button>Change Information</button>
+  
 </template>
 
 <style>
