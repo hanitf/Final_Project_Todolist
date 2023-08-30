@@ -32,9 +32,9 @@ async function renderDelete(tasksID) {
     <li v-for="task in taskStore.tasks">
       
       <p v-if="task">{{ task.title }}</p>
-      <input v-model="modifyEdit">
+      <input v-model="modifyEdit" @keydown.enter="taskStore.modifyTasks(modifyEdit, task.id)">
       <button @click="renderDelete(task.id)">Delete Tasks</button>
-      <button @click="taskStore.modifyTasks(modifyEdit, task.id)">Modify Tasks</button>
+      <button @click="taskStore.modifyTasks(modifyEdit, task.id)" >Modify Tasks</button>
         
     </li>
   </ul>

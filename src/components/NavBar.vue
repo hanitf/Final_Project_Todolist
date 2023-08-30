@@ -13,18 +13,20 @@ const userStore = useUserStore();
   <div class="navbar">
     <div class="leftmenu">
       <router-link to="/">
-        <p class="homelink"><img src="src\logo\logo.png" alt="Menu" class="homeicon"></p>
+        <p class="homelink"><img src="\src\logo\logo.png" alt="Menu" class="homeicon"></p>
       </router-link>
     </div>
     <div class="rightmenu">
       <div class="dropdown">
-        <button class="dropbtn"><img src="src\logo\menu.png" alt="Menu" class="menuicon"></button>
+        <button class="dropbtn"><img src="\src\logo\menu.png" alt="Menu" class="menuicon"></button>
         <div class="dropdown-content">
-          <input placeholder="Write your email" v-model="email" v-if="!userStore.user"
+          <div class="loginmenu">
+          <input placeholder="login" v-model="email" v-if="!userStore.user"
             @keyup.enter="userStore.loginUser(email, password)">
-          <input placeholder="Write your password" v-model="password" type="password" v-if="!userStore.user"
-            @keyup.enter="userStore.loginUser(email, password)">
-          <button @click="userStore.loginUser(email, password)" v-if="!userStore.user">Login</button>
+          <input placeholder="password" v-model="password" type="password" v-if="!userStore.user"
+            @keyup.enter="userStore.loginUser(email, password)"><br>
+          <button @click="userStore.loginUser(email, password)" v-if="!userStore.user" class="loginmenubutton">Login</button>
+        </div>
           <router-link to="/resetpassword" v-if="!userStore.user">Forgot your password?</router-link>
           <router-link to="/account" v-if="userStore.user"> {{ userStore.user.user.email }}</router-link>
           <router-link to="/dashboard" v-if="userStore.user">Dashboard</router-link>
@@ -74,13 +76,14 @@ const userStore = useUserStore();
   font-size: 16px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  
 }
 
 
 .dropdown {
   position: relative;
   display: inline-block;
+  
 }
 
 
@@ -91,6 +94,7 @@ const userStore = useUserStore();
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  opacity: 80%;
 }
 
 
@@ -126,5 +130,27 @@ const userStore = useUserStore();
 
 .menuicon{
   height: 30px;
+}
+
+.loginmenu {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+}
+
+.loginmenubutton{
+  background-color: #4c6baf;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.loginmenubutton:hover {
+  background-color: black;
 }
 </style>
