@@ -66,6 +66,8 @@ const userStore = useUserStore();
   height: 50px;
   align-items: center;
   font-family: monospace;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 

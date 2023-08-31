@@ -10,6 +10,7 @@ export const useTaskStore = defineStore("taskStore", () => {
   const tasks = ref([]);
   const task = ref("");
   const userStore = useUserStore();
+  
 
 
   const fetchTasks = async () => {
@@ -24,15 +25,10 @@ export const useTaskStore = defineStore("taskStore", () => {
 
 
   const createTasks = async (creatEdit, email, userID) => {
-   
-      //const { data , error } = await supabase.auth.getSession()
-      //console.log(data);{
-      
-    
     const { data, error } = await supabase
       .from('tasks')
       .insert({
-        title: creatEdit,
+        title: creatEdit.value,
         email: email,
         user_id: userID,
       })
@@ -40,7 +36,6 @@ export const useTaskStore = defineStore("taskStore", () => {
     if (error) console.log("Error: ", error);
     else console.log("tasks complete: ", data);
     tasks.value.push(data[0]);
-    
   };
 
   const deleteTasks = async (task) => {
