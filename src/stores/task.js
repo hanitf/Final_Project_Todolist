@@ -54,7 +54,7 @@ export const useTaskStore = defineStore("taskStore", () => {
   const modifyTasks = async (modifyEdit, task) => {
     const { error } = await supabase
       .from('tasks')
-      .update({ title: modifyEdit })
+      .update({ title: modifyEdit.value })
       .eq('id', task)
     if (error) console.log("Error: ", error);
     else console.log("tasks modified: ");

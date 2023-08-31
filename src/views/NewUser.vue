@@ -13,13 +13,13 @@ const password = ref("");
   <div>
     <h1>Signup</h1>
 
-    <div>
+    <div class="btn">
       <input placeholder="Write your email" v-model="email">
     </div>
-    <div>
+    <div class="btn">
       <input placeholder="Write your password" v-model="password" type="password">
-    </div>
-    <div>
+    </div><br>
+    <div class="btn">
       <button @click="userStore.createNewUser(email, password)">Signup</button>
     </div>
   </div>

@@ -19,7 +19,7 @@ async function renderDelete(tasksID) {
   creatEdit.value = "";
 }
 
-async function modifyClean(){
+async function modifyClean(task){
   await taskStore.modifyTasks(modifyEdit, task.id)
   modifyEdit.value = "";
 }
@@ -28,10 +28,9 @@ async function modifyClean(){
 
 <template class="templatedash">
   <h1 class="maintext">Dashboard</h1>
-  <div>
-    <input v-model="creatEdit" @keydown.enter="createClean()">
-    <button @click="createClean()">+</button>
-   
+  <div class="createclass">
+    <input v-model="creatEdit" @keydown.enter="createClean()" placeholder="new task...">
+    <button @click="createClean()" class="takscreatebutton">New Task +</button>
   </div>
   <div>
     
@@ -41,14 +40,19 @@ async function modifyClean(){
     <li v-for="task in taskStore.tasks">
       <br>
       <div class="taskcard">
+      <div class="deletbutton">
+        <button @click="renderDelete(task.id)" class="taksbuttons"><img src="\src\logo\delete.png" alt="Edit icon" class="deleticon"></button>
+      </div>
         <div class="tasktitle">
-      <p v-if="task"> {{task.title}} </p>
+      <p v-if="task"> {{task.title}} </p><br>
     </div>
     <div class="taksfunctions">
-      <input v-model="modifyEdit" @keydown.enter="modifyClean(modifyEdit, task.id)">
-      <button @click="renderDelete(task.id)" class="taksbuttons"><img src="\src\logo\delete.png" alt="Edit icon" class="deleticon"></button>
-      <button @click="taskStore.modifyTasks(modifyEdit, task.id)" class="taksbuttons" ><img src="\src\logo\edit.png" alt="Edit icon" class="editicon"></button>
-    </div>
+      <div class="editbutton">
+        <input v-model="modifyEdit" @keydown.enter="modifyClean(task)" placeholder="edit...">
+        <button @click="modifyClean(task)" class="taksbuttons" ><img src="\src\logo\edit.png" alt="Edit icon" class="editicon"></button>
+      </div>
+      
+      </div>
     </div>
     </li>
     <br>
@@ -92,9 +96,10 @@ list-style: none;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  height: 120px;
-  width: 360px;
+  height: 150px;
+  width: 320px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   opacity: 90%;
@@ -102,7 +107,7 @@ list-style: none;
 }
 
 .tasktitle{
-
+  
 }
 
 .taksbuttons{
@@ -110,10 +115,33 @@ background: black;
 border-radius: 5px;
 box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 cursor: pointer;
+color: aliceblue;
 }
 
-.taskfunctions{
-  display: flex;
-  flex-direction: row;
+.takscreatebutton{
+background: black;
+border-radius: 5px;
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+color: aliceblue;
 }
+
+
+.createclass{
+display: flex;
+justify-content: center;
+}
+
+.editbutton{
+display: flex;
+justify-content: center;
+align-items: end;
+}
+
+.deletbutton {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 </style>

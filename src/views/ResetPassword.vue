@@ -12,10 +12,10 @@ const userStore = useUserStore();
   <div>
     <h1>Reset Password</h1>
 
-    <div>
+    <div class="btn">
       <input placeholder="Write your email" v-model="email">
-    </div>
-    <div>
+    </div><br>
+    <div class="btn">
       <button @click="userStore.passwordReset(email)">Reset Password</button>
     </div>
   </div>

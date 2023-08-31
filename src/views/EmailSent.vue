@@ -3,8 +3,9 @@
 </script>
 
 <template>
-  <div>
-    <h1>Check your email!</h1>
+<h1>Check your email!</h1>
+
+  <div class="btn">
     <p>To reset your password please check your mailbox.</p>
   </div>
 </template>
